@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+NAME = 'ChocoDemo'
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "gusztavvargadr/windows-11"
+  config.vm.provider "hyperv"
+  config.vm.network "private_network", bridge: "Default Switch"
+  config.vm.hostname =  NAME 
+ 
+  config.vm.provider "hyperv" do |h|
+    h.enable_virtualization_extensions = false
+    h.linked_clone = true
+    #h.memory = 8096
+    h.memory = 4048
+    h.vmname = NAME
+  end
+  config.vm.synced_folder ".", "/vagrant", type: "smb" , disabled: true
+  config.vm.provision "shell", inline: <<-SHELL
+    # Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    # choco install powershell-core -y
+    # choco install vscode -y
+    # choco install vscode-powershell -y
+    # choco install chocolatey-vscode -y
+  SHELL
+end

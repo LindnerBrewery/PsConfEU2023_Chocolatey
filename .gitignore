@@ -1,0 +1,6 @@
+/choco
+*.nupkg
+*.msi
+*.vhdx
+/vagrant/.vagrant
+*.zip

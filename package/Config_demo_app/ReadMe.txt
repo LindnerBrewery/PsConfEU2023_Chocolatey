@@ -1,0 +1,1 @@
+To be able to package the config_demo_app you must download amazon-corretto-17.0.7.7.1-windows-x64-jdk.zip from https://corretto.aws/downloads/latest/amazon-corretto-17-x64-windows-jdk.zip and place it in the config_demo_app\tools folder
